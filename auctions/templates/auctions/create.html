@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Create Listing</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form action="{% url 'create' %}" method="post">
+                {% csrf_token %}
+                <table>
+                    <div class="form-group">
+                    {{ createform.as_table }}
+                    <tr><td><button type="submit" class="btn btn-lg btn-secondary" style="margin-top: 1em;">Create</button></td></tr>
+                    </div>
+                </table>
+            </form>
+        </div>
+    </div> 
+</div>   
+{% endblock %}

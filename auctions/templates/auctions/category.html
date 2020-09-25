@@ -1,0 +1,34 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row" style="margin-bottom:1em;">
+        <div class="col-md-12">
+            <h2>{{category.title}}</h2>
+            <h4 class="text-muted">{{category.description}}</h4>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4">
+        {% for listing in listings %}
+        <div class="col mb-4">
+            <div class="card h-100">
+            <a href="{% url 'listing' listing.id listing.title %}"><img src="{{listing.imageurl}}" class="card-img-top" alt="{{listing.title}}"></a>
+            <div class="card-body">
+                <h5 class="card-title">{{listing.title}}</h5>
+                <p class="card-text">{{listing.description}}</p>
+                <p class="card-text">
+                {% for x in listing.bids.all|dictsortreversed:"bid"|slice:1 %} 
+                    ${{x.bid}}
+                {% endfor %} 
+                </p>
+            </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <p>There are no current listings in {{category.title}}. You can add one <a href="{% url 'create' %}">here</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>        
+{% endblock %}

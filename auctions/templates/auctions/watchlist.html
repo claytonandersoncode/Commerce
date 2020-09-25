@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row" style="margin-bottom:1em;">
+        <div class="col-md-12">
+            <h2>{{user.username}}'s Watchlist:</h2>
+        </div>
+    </div>
+    <div class="row">
+        {% if user.is_authenticated %}
+        <div class="card-deck">
+            {% for watched in watchlist %}
+            <div class="card" style="max-width: 20em;">
+            <a href="{% url 'listing' watched.listing.id watched.listing.title %}"><img src="{{watched.listing.imageurl}}" class="card-img-top" alt="{{watched.listing.title}}"></a>
+            <div class="card-body">
+                <h5 class="card-title">{{watched.listing.title}}</h5>
+                <p class="card-text">{{watched.listing.description}}</p>
+                <p class="card-text">
+                {% for x in watched.listing.bids.all|dictsortreversed:"bid"|slice:1 %} 
+                    ${{x.bid}}
+                {% endfor %} 
+                </p>
+            </div>
+            </div>
+            {% empty %}
+            <p>Add Some Items to Your Watchlist!<p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
