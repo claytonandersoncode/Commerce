@@ -6,4 +6,4 @@ Built with Python, Django, and Bootstrap 4
 
 # Demo
 
-[![Wiki Demo](demo/commercedemo.png)](https://www.youtube.com/watch?v=4mSIEV-BkAM&feature=youtu.be)
+[![Commerce Demo](demo/commercedemo.png)](https://www.youtube.com/watch?v=4mSIEV-BkAM)
